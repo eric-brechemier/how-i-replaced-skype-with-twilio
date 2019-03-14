@@ -28,13 +28,20 @@ I described all the steps that I followed in details,
 including the understanding that I gained through trial and error,
 in separate issues:
 
-* How Skype dumped me
-* How I compared different VOIP providers
-* How I chose a mobile phone number on Twilio
-* How I tried a few VOIP software phones
-* How I configured Twilio to send/receive phone calls
-* How I improved the experience of callers when I am not available
+* [How Skype dumped me][#1]
+* [How I compared different VOIP providers][#2]
+* [How I chose a mobile phone number on Twilio][#3]
+* [How I tried a few VOIP software phones][#4]
+* [How I configured Twilio to send/receive phone calls][#5]
+* [How I improved the experience of callers when I am not available][#6]
   (or How I failed to configure a convincing voice mail using TwiML)
+
+[#1]: https://github.com/eric-brechemier/how-i-replaced-skype-with-twilio/issues/1
+[#2]: https://github.com/eric-brechemier/how-i-replaced-skype-with-twilio/issues/2
+[#3]: https://github.com/eric-brechemier/how-i-replaced-skype-with-twilio/issues/3
+[#4]: https://github.com/eric-brechemier/how-i-replaced-skype-with-twilio/issues/4
+[#5]: https://github.com/eric-brechemier/how-i-replaced-skype-with-twilio/issues/5
+[#6]: https://github.com/eric-brechemier/how-i-replaced-skype-with-twilio/issues/6
 
 If you are interested only in how to reproduce my current setup,
 you can read the short story below.
