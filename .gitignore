@@ -1,0 +1,5 @@
+# ignore macOS metadata
+.DS_Store
+
+# unedited pictures, before edits for privacy
+RAW
