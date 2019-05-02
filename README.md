@@ -51,7 +51,7 @@ you can read the short story below.
 ### 1. Create your Twilio account
 
 * if you do not have a Twilio account, sign up
-* sign in to your Twilio account
+* or if you already have a Twilio account, sign in
 
 ### 2. Choose a new phone number
 
@@ -61,8 +61,8 @@ you can read the short story below.
 
 ### 3. Configure SIP
 
-* create a SIP domain
-* create a user for your SIP domain
+* create a SIP user for yourself
+* create a SIP domain for your Twilio phone number
 * download and install Linphone on your computer
 * add the SIP user in Linphone
 
