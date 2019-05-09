@@ -118,7 +118,7 @@ sip:+13035550123@your-sip-domain.sip.us1.twilio.com
   Forward the call to my computer using my SIP address
   -->
   <Dial>
-    <Sip>sip:jane-doe@your-sip-domain.sip.us1.twilio.com</Sip>
+    <Sip>sip:jane-doe@your-sip-domain.sip.us1.twilio.com;transport=tls</Sip>
   </Dial>
   <!--
   If I don't answer, ring busy
