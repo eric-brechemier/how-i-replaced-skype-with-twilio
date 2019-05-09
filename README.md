@@ -129,10 +129,10 @@ sip:+13035550123@your-sip-domain.sip.us1.twilio.com
 
 In the above script, replace the user name and domain in the `<Sip>` element
 with the identifier of the SIP user that you created, followed with `@` and
-the SIP domain that you created, ending with `.sip.us1.twilio.com`:
+the SIP domain that you created, ending with `.sip.us1.twilio.com;transport=tls`:
 
 ```
-<Sip>sip:[SIP User]@[SIP Domain].sip.us1.twilio.com</Sip>
+<Sip>sip:[SIP User]@[SIP Domain].sip.us1.twilio.com;transport=tls</Sip>
 ```
 
 * go to the configuration of your phone number on Twilio,
