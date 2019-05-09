@@ -117,7 +117,7 @@ sip:+13035550123@your-sip-domain.sip.us1.twilio.com
   <!--
   Forward the call to my computer using my SIP address
   -->
-  <Dial answerOnBridge="true">
+  <Dial>
     <Sip>sip:jane-doe@your-sip-domain.sip.us1.twilio.com</Sip>
   </Dial>
   <!--
