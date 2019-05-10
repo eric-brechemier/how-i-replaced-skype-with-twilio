@@ -33,8 +33,7 @@ in separate issues:
 * [How I chose a mobile phone number on Twilio][#3]
 * [How I tried a few VOIP software phones][#4]
 * [How I configured Twilio to send/receive phone calls][#5]
-* [How I improved the experience of callers when I am not available][#6]  
-  (or How I failed to configure a convincing voice mail using TwiML)
+* [How I configured Twilio to record voicemail and send it to me by email][#6]  
 
 [#1]: https://github.com/eric-brechemier/how-i-replaced-skype-with-twilio/issues/1
 [#2]: https://github.com/eric-brechemier/how-i-replaced-skype-with-twilio/issues/2
