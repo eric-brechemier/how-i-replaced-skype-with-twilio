@@ -148,8 +148,6 @@ The current setup does not fulfill all my expectations yet:
 * even for calls from Europe to Europe, the call metadata always
   transits through a Twilio server in the US
 
-* there is no voicemail, the phone always rings busy when unavailable
-
 * there is no way to exchange text messages between the VOIP phone
   and a regular mobile phone
 
