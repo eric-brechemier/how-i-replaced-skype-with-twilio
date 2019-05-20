@@ -24,14 +24,14 @@ for calls to the [PSTN][] in 2018–2019.
 This is the story of how I successfully configured Twilio to get a
 mobile phone number which can make and receive calls from my computer.
 
-I described all the steps that I followed in details,
+I have described all the steps that I followed in details,
 including the understanding that I gained through trial and error,
 in separate issues:
 
 * [How Skype dumped me][#1]
 * [How I compared different VOIP providers][#2]
 * [How I chose a mobile phone number on Twilio][#3]
-* [How I tried a few VOIP software phones][#4]
+* [How I tried two different VOIP software phones][#4]
 * [How I configured Twilio to send/receive phone calls][#5]
 * [How I configured Twilio to record voicemail and send it to me by email][#6]  
 
@@ -43,92 +43,91 @@ in separate issues:
 [#6]: https://github.com/eric-brechemier/how-i-replaced-skype-with-twilio/issues/6
 
 If you are interested only in how to reproduce my current setup,
-you can read the short story below.
+you can read the short story below. It features links to more
+details in the long story, if you need them.
 
 ## The Short Story
 
 ### 1. Create your Twilio account
 
-* if you do not have a Twilio account, sign up
+* if you do not have a Twilio account, [sign up][]
 * or if you already have a Twilio account, sign in
+
+[sign up]: https://github.com/eric-brechemier/how-i-replaced-skype-with-twilio/issues/5#issuecomment-486732130
 
 ### 2. Choose a new phone number
 
-* register a credit card
+* [register a credit card][]
 * add funds to your account
-* purchase a new phone number
+* [purchase a new phone number][]
+
+[register a credit card]: https://github.com/eric-brechemier/how-i-replaced-skype-with-twilio/issues/5#issuecomment-486774068
+[purchase a new phone number]: https://github.com/eric-brechemier/how-i-replaced-skype-with-twilio/issues/5#issuecomment-486873065
 
 ### 3. Configure SIP
 
-* create a SIP user for yourself
-* create a SIP domain for your Twilio phone number
-* download and install Linphone on your computer
-* add the SIP user in Linphone
+* [create a SIP user][] for yourself
+* [create a SIP domain][] for your Twilio phone number
+* download and install [Linphone][] on your computer
+* [add the SIP user][] in Linphone
+
+[create a SIP user]: https://github.com/eric-brechemier/how-i-replaced-skype-with-twilio/issues/5#issuecomment-488743581
+[create a SIP domain]: https://github.com/eric-brechemier/how-i-replaced-skype-with-twilio/issues/5#issuecomment-488743605
+[Linphone]: https://linphone.org/
+[add the SIP user]: https://github.com/eric-brechemier/how-i-replaced-skype-with-twilio/issues/5#issuecomment-488824107
 
 ### 4. Make calls from your computer
 
-* create a TwiML script which describes how phone calls
+* [create a TwiML script][] which describes how phone calls
   made from the computer are forwarded to regular phones:
+
+[create a TwiML script]: https://github.com/eric-brechemier/how-i-replaced-skype-with-twilio/issues/5#issuecomment-489185155
 
 ```
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Making Calls from SIP to Regular Phones -->
 <Response>
-  <!--
-    Call a Public Switched Telephone Network (PSTN) phone
-    using the SIP user name (before the @ in the SIP address)
-    as the number to call (in international format E164),
-    with my Twilio mobile phone number displayed in caller id.
-  -->
-  <Dial callerId="+12025550162">{{#e164}}{{To}}{{/e164}}</Dial>
+  <Dial callerId="{{#e164}}{{SipDomain}}{{/e164}}">
+    {{#e164}}{{To}}{{/e164}}
+  </Dial>
 </Response>
 ```
 
-In the above script, replace the phone number in the `callerId` attribute
-with the one that you purchased on Twilio, in international format.
+* copy the URL of the TwiML bin,
+  found in its details after saving the script.
+  Go to the settings of the SIP domain,
+  and under Voice Configuration,
+  paste the URL from the clipboard into the Request URL field,
+  then save.
 
 * launch Linphone on your computer
-* in Linphone, create a new contact for a regular phone number:
-  you have to format the number in international format
-  (starting with `+` and country code) and
-  add `@` followed with the SIP domain that you created,
-  ending with `.sip.us1.twilio.com`:
+* test the setup: [call a regular phone number][] from Linphone
+* you can then [save this phone number as a contact][]
 
-```
-sip:[International Phone Number]@[SIP Domain].sip.us1.twilio.com
-```
-
-for example:
-
-```
-sip:+13035550123@your-sip-domain.sip.us1.twilio.com
-```
-
-* test the setup: call the new contact from Linphone
+[call a regular phone number]: https://github.com/eric-brechemier/how-i-replaced-skype-with-twilio/issues/4#issuecomment-486283899
+[save this phone number as a contact]: https://github.com/eric-brechemier/how-i-replaced-skype-with-twilio/issues/4#issuecomment-486344355
 
 ### 5. Receive calls on your computer
 
-* create a new TwiML script which describes how phone calls received
-  from regular phones are answered:
+* [create a new TwiML script][] which describes how phone calls
+  received from regular phones are answered:
+
+[create a new TwiML script]: https://github.com/eric-brechemier/how-i-replaced-skype-with-twilio/issues/5#issuecomment-491344662
 
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <Response>
-  <!--
-  Forward the call to my computer using my SIP address
-  -->
+  <!-- Receiving Calls from Regular Phones to SIP -->
   <Dial>
-    <Sip>sip:jane-doe@your-sip-domain.sip.us1.twilio.com;transport=tls</Sip>
+    <Sip>sip:me@1-202-555-0162.sip.us1.twilio.com;transport=tls</Sip>
   </Dial>
-  <!--
-  If I don't answer, ring busy
-  -->
-  <Reject reason="busy" />
 </Response>
 ```
 
-In the above script, replace the user name and domain in the `<Sip>` element
-with the identifier of the SIP user that you created, followed with `@` and
-the SIP domain that you created, ending with `.sip.us1.twilio.com;transport=tls`:
+In the above script, replace the user name and domain in the `<Sip>`
+element with the identifier of the SIP user that you created,
+followed with `@` and the SIP domain that you created, ending
+with `.sip.us1.twilio.com;transport=tls`:
 
 ```
 <Sip>sip:[SIP User]@[SIP Domain].sip.us1.twilio.com;transport=tls</Sip>
@@ -136,25 +135,93 @@ the SIP domain that you created, ending with `.sip.us1.twilio.com;transport=tls`
 
 * go to the configuration of your phone number on Twilio,
   and next to "A call comes in", select TwiML and the script
-  that you just created to manage received phone calls.
+  that you just created to manage incoming phone calls.
+* delete the URL next to "A message comes in",
+  which answers all texts with a canned response.
+* save the settings.
+
+* try to call your Twilio number from a regular phone.
+
+### 6. Configure a voicemail
+
+You can extend the TwiML script which handles incoming calls
+to forward the caller to voicemail when you fail to answer:
+
+* [record a voicemail greeting using Audacity][]
+* export the greeting as a WAV file (in mono with 8bit/s at 8kHz)
+* [upload the WAV as an asset on Twilio][]
+* copy the URL of the asset
+* go to the [Voicemail Twimlet][]
+* [create a custom Voicemail URL][] using the generator form
+  at the bottom of the page:
+  - Email: the email address where you want to receive voicemail notifications
+  - Message: the URL of your greeting, pasted from the clipboard
+  - Transcribe: false
+* copy the generated URL
+* go to the [Forward Twimlet][]
+* [create a custom Forward Twimlet URL][]:
+  paste your custom Voicemail URL next to FailUrl
+  in the form at the bottom of the page,
+  then change its protocol from `http` to `https`;
+  leave all the other fields empty.
+* copy the generated URL
+* go back to your Twilio dashboard.
+  In the TwiML bin which handles incoming calls,
+  add an `action` attribute to the `<Dial>` element
+  and paste your custom Forward URL as its value.
+  Change the protocol of the URL from `http` to `https`,
+  then add `&amp;Dial=true` at the end of the URL.
+
+[record a voicemail greeting using Audacity]: https://github.com/eric-brechemier/how-i-replaced-skype-with-twilio/issues/6#issuecomment-491966311
+[upload the WAV as an asset on Twilio]: https://github.com/eric-brechemier/how-i-replaced-skype-with-twilio/issues/6#issuecomment-492404925
+[Voicemail Twimlet]: https://www.twilio.com/labs/twimlets/voicemail
+[create a custom Voicemail Twimlet URL]: https://github.com/eric-brechemier/how-i-replaced-skype-with-twilio/issues/6#issuecomment-492413746
+[Forward Twimlet]: https://www.twilio.com/labs/twimlets/forward
+[create a custom Forward Twimlet URL]: https://github.com/eric-brechemier/how-i-replaced-skype-with-twilio/issues/6#issuecomment-492444770
+
+You now have a script of the form:
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+  <!-- Receiving Calls from Regular Phones to SIP (with Voicemail) -->
+  <Dial action="https://twimlets.com/forward?FailUrl=https%3A%2F%2Ftwimlets.com%2Fvoicemail%3FEmail%3Dyou%2540example.org%26Message%3Dhttps%253A%252F%252Fyour-runtime-domain.twil.io%252Fassets%252Fgreeting.wav%26Transcribe%3Dfalse&amp;Dial=true">
+    <Sip>sip:your-sip-user@your-sip-domain.sip.us1.twilio.com;transport=tls</Sip>
+  </Dial>
+</Response>
+```
+
+where:
+- you@example.org stands for your email address
+- https://your-runtime-domain.twil.io/assets/greeting.wav
+  stands for the URL of your greeting asset
+- your-sip-user stands for the SIP user that you created for yourself
+- your-sip-domain stands for the custom SIP subdomain that you created
+
+* you can now close your computer and call your Twilio number
+  from a regular phone to test the voicemail.
 
 ## Limitations
 
-The current setup does not fulfill all my expectations yet:
+The current setup does not fulfill all of my expectations yet:
 
-* the audio channels are transported without encryption, and the
+* [there is no way to send/receive text messages from the software phone][#7]
+
+* [the audio channels are transported without encryption][#8], and the
   communication can thus be intercepted by any intermediate server
 
-* even for calls from Europe to Europe, the call metadata always
-  transits through a Twilio server in the US
+* even for calls from Europe to Europe,
+  [the call always transits through a Twilio server in the US][#9],
+  increasing latency
 
-* there is no way to exchange text messages between the VOIP phone
-  and a regular mobile phone
+[#7]: https://github.com/eric-brechemier/how-i-replaced-skype-with-twilio/issues/7
+[#8]: https://github.com/eric-brechemier/how-i-replaced-skype-with-twilio/issues/8
+[#9]: https://github.com/eric-brechemier/how-i-replaced-skype-with-twilio/issues/9
 
-## Licenses
+## License
 
-* code: [CC0][] (no attribution required)
-* text and images: [CC-BY][] [Eric Bréchemier][EB]
+* Code: [CC0][] (no attribution required)
+* Text and Images: [CC-BY][] [Eric Bréchemier][EB]
 
 [CC0]: https://creativecommons.org/publicdomain/zero/1.0/
 [CC-BY]: https://creativecommons.org/licenses/by/4.0/
