@@ -95,10 +95,10 @@ details in the long story, if you need them.
 
 * copy the URL of the TwiML bin,
   found in its details after saving the script.
-  Go to the settings of the SIP domain,
+* go to the settings of the SIP domain,
   and under Voice Configuration,
-  paste the URL from the clipboard into the Request URL field,
-  then save.
+  paste the URL from the clipboard into the Request URL field
+* save the settings of the SIP domain
 
 * launch Linphone on your computer
 * test the setup: [call a regular phone number][] from Linphone
@@ -133,14 +133,14 @@ with `.sip.us1.twilio.com;transport=tls`:
 <Sip>sip:[SIP User]@[SIP Domain].sip.us1.twilio.com;transport=tls</Sip>
 ```
 
-* go to the configuration of your phone number on Twilio,
-  and next to "A call comes in", select TwiML and the script
-  that you just created to manage incoming phone calls.
+* go to the configuration of your phone number on Twilio
+* next to "A call comes in", select TwiML and the script
+  that you just created to manage incoming phone calls
 * delete the URL next to "A message comes in",
-  which answers all texts with a canned response.
-* save the settings.
+  which answers all texts with a canned response
+* save the settings
 
-* try to call your Twilio number from a regular phone.
+* try to call your Twilio number from a regular phone
 
 ### 6. Configure a voicemail
 
@@ -162,15 +162,15 @@ to forward the caller to voicemail when you fail to answer:
 * [create a custom Forward Twimlet URL][]:
   paste your custom Voicemail URL next to FailUrl
   in the form at the bottom of the page,
-  then change its protocol from `http` to `https`;
-  leave all the other fields empty.
+  then change its protocol from `http` to `https`
+* leave all the other fields empty
 * copy the generated URL
-* go back to your Twilio dashboard.
-  In the TwiML bin which handles incoming calls,
+* go back to your Twilio dashboard
+* in the TwiML bin which handles incoming calls,
   add an `action` attribute to the `<Dial>` element
-  and paste your custom Forward URL as its value.
-  Change the protocol of the URL from `http` to `https`,
-  then add `&amp;Dial=true` at the end of the URL.
+* paste your custom Forward URL as its value
+* change the protocol of the URL from `http` to `https`
+* then add `&amp;Dial=true` at the end of the URL
 
 [record a voicemail greeting using Audacity]: https://github.com/eric-brechemier/how-i-replaced-skype-with-twilio/issues/6#issuecomment-491966311
 [upload the WAV as an asset on Twilio]: https://github.com/eric-brechemier/how-i-replaced-skype-with-twilio/issues/6#issuecomment-492404925
@@ -199,7 +199,7 @@ where:
 - your-sip-domain stands for the custom SIP subdomain that you created
 
 * you can now close your computer and call your Twilio number
-  from a regular phone to test the voicemail.
+  from a regular phone to test the voicemail
 
 ## Limitations
 
