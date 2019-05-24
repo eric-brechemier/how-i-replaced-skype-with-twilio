@@ -1,0 +1,2 @@
+# Do not store API credentials in repository
+auth.sh
