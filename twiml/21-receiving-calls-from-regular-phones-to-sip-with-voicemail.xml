@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+  <!-- Receiving Calls from Regular Phones to SIP (with Voicemail) -->
+  <Dial action="https://twimlets.com/forward?FailUrl=https%3A%2F%2Ftwimlets.com%2Fvoicemail%3FEmail%3Dyou%2540example.org%26Message%3Dhttps%253A%252F%252Fyour-runtime-domain.twil.io%252Fassets%252Fgreeting.wav%26Transcribe%3Dfalse&amp;Dial=true">
+    <Sip>sip:your-sip-user@your-sip-domain.sip.us1.twilio.com;transport=tls</Sip>
+  </Dial>
+</Response>
