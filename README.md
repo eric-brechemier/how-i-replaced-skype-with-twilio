@@ -207,15 +207,11 @@ The current setup does not fulfill all of my expectations yet:
 
 * [there is no way to send/receive text messages from the software phone][#7]
 
-* [the audio channels are transported without encryption][#8], and the
-  communication can thus be intercepted by any intermediate server
-
 * even for calls from Europe to Europe,
   [the call always transits through a Twilio server in the US][#9],
   increasing latency
 
 [#7]: https://github.com/eric-brechemier/how-i-replaced-skype-with-twilio/issues/7
-[#8]: https://github.com/eric-brechemier/how-i-replaced-skype-with-twilio/issues/8
 [#9]: https://github.com/eric-brechemier/how-i-replaced-skype-with-twilio/issues/9
 
 ## License
