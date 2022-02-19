@@ -2,6 +2,6 @@
 <Response>
   <!-- Receiving Calls from Regular Phones to SIP -->
   <Dial>
-    <Sip>sip:your-sip-user@your-sip-domain.sip.us1.twilio.com;transport=tls</Sip>
+    <Sip>sip:your-sip-user@your-sip-domain.sip.us1.twilio.com;transport=tls;secure=true</Sip>
   </Dial>
 </Response>
