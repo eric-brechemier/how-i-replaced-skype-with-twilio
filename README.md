@@ -119,7 +119,7 @@ details in the long story, if you need them.
 <Response>
   <!-- Receiving Calls from Regular Phones to SIP -->
   <Dial>
-    <Sip>sip:me@1-202-555-0162.sip.us1.twilio.com;transport=tls</Sip>
+    <Sip>sip:me@1-202-555-0162.sip.us1.twilio.com;transport=tls;secure=true</Sip>
   </Dial>
 </Response>
 ```
@@ -127,10 +127,10 @@ details in the long story, if you need them.
 In the above script, replace the user name and domain in the `<Sip>`
 element with the identifier of the SIP user that you created,
 followed with `@` and the SIP domain that you created, ending
-with `.sip.us1.twilio.com;transport=tls`:
+with `.sip.us1.twilio.com;transport=tls;secure=true`:
 
 ```
-<Sip>sip:[SIP User]@[SIP Domain].sip.us1.twilio.com;transport=tls</Sip>
+<Sip>sip:[SIP User]@[SIP Domain].sip.us1.twilio.com;transport=tls;secure=true</Sip>
 ```
 
 * go to the configuration of your phone number on Twilio
@@ -186,7 +186,7 @@ You now have a script of the form:
 <Response>
   <!-- Receiving Calls from Regular Phones to SIP (with Voicemail) -->
   <Dial action="https://twimlets.com/forward?FailUrl=https%3A%2F%2Ftwimlets.com%2Fvoicemail%3FEmail%3Dyou%2540example.org%26Message%3Dhttps%253A%252F%252Fyour-runtime-domain.twil.io%252Fassets%252Fgreeting.wav%26Transcribe%3Dfalse&amp;Dial=true">
-    <Sip>sip:your-sip-user@your-sip-domain.sip.us1.twilio.com;transport=tls</Sip>
+    <Sip>sip:your-sip-user@your-sip-domain.sip.us1.twilio.com;transport=tls;secure=true</Sip>
   </Dial>
 </Response>
 ```
