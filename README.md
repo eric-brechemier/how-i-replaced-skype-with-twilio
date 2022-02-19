@@ -69,12 +69,12 @@ details in the long story, if you need them.
 * [create a SIP user][] for yourself
 * [create a SIP domain][] for your Twilio phone number
 * download and install [Linphone][] on your computer
-* [add the SIP user][] in Linphone
+* [configure call encryption and add the SIP user][] in Linphone
 
 [create a SIP user]: https://github.com/eric-brechemier/how-i-replaced-skype-with-twilio/issues/5#issuecomment-488743581
 [create a SIP domain]: https://github.com/eric-brechemier/how-i-replaced-skype-with-twilio/issues/5#issuecomment-488743605
 [Linphone]: https://linphone.org/
-[add the SIP user]: https://github.com/eric-brechemier/how-i-replaced-skype-with-twilio/issues/5#issuecomment-488824107
+[configure call encryption and add the SIP user]: https://github.com/eric-brechemier/how-i-replaced-skype-with-twilio/issues/5#issuecomment-488824107
 
 ### 4. Make calls from your computer
 
