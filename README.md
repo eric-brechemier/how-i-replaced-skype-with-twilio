@@ -205,7 +205,7 @@ where:
 * you can now close your computer and call your Twilio number
   from a regular phone to test the voicemail
 
-### Use Pipedream Workflows to Send/Receive SMS Messages by Email
+### 7. Use Pipedream Workflows to Send/Receive SMS Messages by Email
 
 * [Create your Pipedream account][]
 * [Configure Workflow to Send SMS by Email][]
