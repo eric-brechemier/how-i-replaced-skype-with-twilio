@@ -217,7 +217,7 @@ where:
 * send a test email to the inbound email address of the workflow
 
 When sending an SMS by email, you will need to include the phone number
-of the recipient, in international format, in the subject, e.g.  
+of the recipient, in international format, in the subject, e.g.
 *New SMS to +## ###-###-#####*.
 
 * the test event is received by your Pipedream workflow
