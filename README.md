@@ -33,7 +33,9 @@ in separate issues:
 * [How I chose a mobile phone number on Twilio][#3]
 * [How I tried two different VOIP software phones][#4]
 * [How I configured Twilio to send/receive phone calls][#5]
-* [How I configured Twilio to record voicemail and send it to me by email][#6]  
+* [How I configured Twilio to record voicemail and send it to me by email][#6]
+* [How I compared different services to send/receive SMS messages by email][#12]
+* [How I configured Twilio and Pipedream to send/receive SMS messages by email][#7]
 
 [#1]: https://github.com/eric-brechemier/how-i-replaced-skype-with-twilio/issues/1
 [#2]: https://github.com/eric-brechemier/how-i-replaced-skype-with-twilio/issues/2
@@ -41,6 +43,8 @@ in separate issues:
 [#4]: https://github.com/eric-brechemier/how-i-replaced-skype-with-twilio/issues/4
 [#5]: https://github.com/eric-brechemier/how-i-replaced-skype-with-twilio/issues/5
 [#6]: https://github.com/eric-brechemier/how-i-replaced-skype-with-twilio/issues/6
+[#7]: https://github.com/eric-brechemier/how-i-replaced-skype-with-twilio/issues/7
+[#12]: https://github.com/eric-brechemier/how-i-replaced-skype-with-twilio/issues/12
 
 If you are interested only in how to reproduce my current setup,
 you can read the short story below. It features links to more
@@ -201,17 +205,24 @@ where:
 * you can now close your computer and call your Twilio number
   from a regular phone to test the voicemail
 
+### Use Pipedream Workflows to Send/Receive SMS Messages by Email
+
+* [Create your Pipedream account][]
+* [Configure Workflow to Send SMS by Email][]
+* [Configure Workflow to Receive SMS by Email][]
+
+[Create your Pipedream account]: https://github.com/eric-brechemier/how-i-replaced-skype-with-twilio/issues/7#issuecomment-1080002690
+[Configure Workflow to Send SMS by Email]: https://github.com/eric-brechemier/how-i-replaced-skype-with-twilio/issues/7#issuecomment-1080040128
+[Configure Workflow to Receive SMS by Email]: https://github.com/eric-brechemier/how-i-replaced-skype-with-twilio/issues/7#issuecomment-1084939718
+
 ## Limitations
 
 The current setup does not fulfill all of my expectations yet:
-
-* [there is no way to send/receive text messages from the software phone][#7]
 
 * even for calls from Europe to Europe,
   [the call always transits through a Twilio server in the US][#9],
   increasing latency
 
-[#7]: https://github.com/eric-brechemier/how-i-replaced-skype-with-twilio/issues/7
 [#9]: https://github.com/eric-brechemier/how-i-replaced-skype-with-twilio/issues/9
 
 ## License
