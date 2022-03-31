@@ -244,7 +244,7 @@ of the recipient, in international format, in the subject, e.g.
 * name it *Receive SMS by Email*
 * select *HTTP / Webhook Requests* as trigger step of the workflow
 * configure a static response for the webhook, with status code `200`,
-  header `Content-Type: application/xml` and the static response below:
+  header `Content-Type:application/xml` and the static response below:
 
 ```
 <?xml version="1.0" encoding="UTF-8" ?>
