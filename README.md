@@ -205,15 +205,69 @@ where:
 * you can now close your computer and call your Twilio number
   from a regular phone to test the voicemail
 
-### 7. Use Pipedream Workflows to Send/Receive SMS Messages by Email
+### 7. Configure Pipedream Workflow to [Send SMS Messages by Email][]
 
-* [Create your Pipedream account][]
-* [Configure Workflow to Send SMS by Email][]
-* [Configure Workflow to Receive SMS by Email][]
+[Pipedream]: https://pipedream.com/
+[Send SMS Messages by Email]: https://github.com/eric-brechemier/how-i-replaced-skype-with-twilio/issues/7#issuecomment-1080040128
+[Receive SMS Messages by Email]: https://github.com/eric-brechemier/how-i-replaced-skype-with-twilio/issues/7#issuecomment-1084939718
 
-[Create your Pipedream account]: https://github.com/eric-brechemier/how-i-replaced-skype-with-twilio/issues/7#issuecomment-1080002690
-[Configure Workflow to Send SMS by Email]: https://github.com/eric-brechemier/how-i-replaced-skype-with-twilio/issues/7#issuecomment-1080040128
-[Configure Workflow to Receive SMS by Email]: https://github.com/eric-brechemier/how-i-replaced-skype-with-twilio/issues/7#issuecomment-1084939718
+* create your [Pipedream][] account]
+* a new workflow is created automatically, rename it to *Send SMS by Email*
+* select the *Email* action for the trigger step of the workflow
+* send a test email to the inbound email address of the workflow
+
+When sending an SMS by email, you will need to include the phone number
+of the recipient, in international format, in the subject, e.g.  
+*New SMS to +## ###-###-#####*.
+
+* the test event is received by your Pipedream workflow
+* continue and add the *Twilio: Send SMS* action as a second step
+* create a Twilio API key and connect Pipedream to Twilio API
+* select your Twilio phone number as *From*
+* configure the following template as *To*:
+
+```
+{{steps.trigger.event.headers.subject.replace(/^.+\+/,'+').replace(/[^+0-9]/g,'')}}
+```
+
+* configure the following template as *Message Body*:
+
+```
+{{steps.trigger.event.body.text}}
+```
+
+* test and deploy the configured workflow
+
+### 8. Configure Pipedream Workflow to [Receive SMS Messages by Email][]
+
+* create a new workflow
+* name it *Receive SMS by Email*
+* select *HTTP / Webhook Requests* as trigger step of the workflow
+* configure a static response for the webhook, with status code `200`,
+  header `Content-Type: application/xml` and the static response below:
+
+```
+<?xml version="1.0" encoding="UTF-8" ?>
+<Response/>
+```
+
+* configure the trigger URL as webhook for incoming SMS in Twilio dashboard
+* send a test SMS to your Twilio phone number
+* the test event is received by your Pipedream workflow
+* continue and add the *Send Email* action as second step of the workflow
+* configure the template below as *Subject*:
+
+```
+New SMS from {{steps.trigger.event.body.From}}
+```
+
+* configure the template below as *Text*:
+
+```
+{{steps.trigger.event.body.Body}}
+```
+
+* test and deploy your second workflow
 
 ## Limitations
 
