@@ -36,6 +36,7 @@ in separate issues:
 * [How I configured Twilio to record voicemail and send it to me by email][#6]
 * [How I compared different services to send/receive SMS messages by email][#12]
 * [How I configured Twilio and Pipedream to send/receive SMS messages by email][#7]
+* [How I managed to receive authentication SMS messages][#13]
 
 [#1]: https://github.com/eric-brechemier/how-i-replaced-skype-with-twilio/issues/1
 [#2]: https://github.com/eric-brechemier/how-i-replaced-skype-with-twilio/issues/2
@@ -45,6 +46,7 @@ in separate issues:
 [#6]: https://github.com/eric-brechemier/how-i-replaced-skype-with-twilio/issues/6
 [#7]: https://github.com/eric-brechemier/how-i-replaced-skype-with-twilio/issues/7
 [#12]: https://github.com/eric-brechemier/how-i-replaced-skype-with-twilio/issues/12
+[#13]: https://github.com/eric-brechemier/how-i-replaced-skype-with-twilio/issues/13
 
 If you are interested only in how to reproduce my current setup,
 you can read the short story below. It features links to more
