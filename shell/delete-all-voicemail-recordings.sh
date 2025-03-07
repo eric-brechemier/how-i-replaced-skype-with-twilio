@@ -2,16 +2,24 @@
 # Delete all voicemail recordings from your Twilio account
 #
 # Note:
-# a single run of this script will delete up to 10,000 voicemails.
+# a single run of this script will delete up to 1,000 voicemails.
 #
 # Requires:
 #   * curl - transfer a URL
 #   * jq - Command-line JSON processor
 #
+# References:
+#   [1] Read multiple Recording Resources
+#   https://www.twilio.com/docs/voice/api/recording#read-multiple-recording-resources
+#
+#   [2] Delete a Recording resource
+#   https://www.twilio.com/docs/voice/api/recording#delete-a-recording-resource
+#
 cd "$(dirname "$0")"
 
 accountSID='' # REQUIRED
 authToken='' # REQUIRED
+maxRecordings=1000 # See maximum value allowed for PageSize in [1]
 test -f ./auth.sh && . ./auth.sh
 
 if test -z "$accountSID" -o -z "$authToken"
@@ -38,7 +46,7 @@ fi
 api="https://api.twilio.com/2010-04-01/Accounts/$accountSID"
 auth="$accountSID:$authToken"
 
-curl "$api/Recordings.json" -u "$auth" -s |
+curl "$api/Recordings.json?PageSize=$maxRecordings" -u "$auth" -s |
 jq '.recordings[] | .sid' --raw-output |
 while read -r recordingSID
 do
