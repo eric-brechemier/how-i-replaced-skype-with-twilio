@@ -19,7 +19,6 @@ cd "$(dirname "$0")"
 
 accountSID='' # REQUIRED
 authToken='' # REQUIRED
-maxRecordings=1000 # See maximum value allowed for PageSize in [1]
 test -f ./auth.sh && . ./auth.sh
 
 if test -z "$accountSID" -o -z "$authToken"
@@ -45,6 +44,7 @@ fi
 
 api="https://api.twilio.com/2010-04-01/Accounts/$accountSID"
 auth="$accountSID:$authToken"
+maxRecordings=1000 # maximum value allowed for PageSize in [1]
 
 curl "$api/Recordings.json?PageSize=$maxRecordings" -u "$auth" -s |
 jq '.recordings[] | .sid' --raw-output |
